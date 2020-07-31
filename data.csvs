@@ -1,0 +1,7 @@
+version 1.0
+@totalColumns 5
+id: notEmpty unique positiveInteger
+authors:
+citation: notEmpty
+notes:
+categories:

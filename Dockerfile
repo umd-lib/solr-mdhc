@@ -1,3 +1,17 @@
+# Validate data.csv using csv-validator 1.1.5
+# https://digital-preservation.github.io/csv-validator/
+#
+# TODO: consider whether we should create a umd-lib version of this container,
+# which includes a version tag
+FROM knocknote/csv-validator:latest as validator
+
+COPY data.csv /tmp/
+COPY data.csvs /tmp/
+
+RUN validate /tmp/data.csv /tmp/data.csvs
+
+
+# Load data.csv into the Solr core
 FROM solr:8.1.1 as builder
 
 # Switch to root user
@@ -36,6 +50,7 @@ RUN /opt/solr/bin/solr start && sleep 3 && \
     --data-binary @/tmp/data.csv -H 'Content-type:text/csv; charset=utf-8' && \
     /opt/solr/bin/solr stop
 
+# Create the Solr runtime container
 FROM solr:8.1.1-slim
 
 ENV SOLR_HOME=/apps/solr/data
