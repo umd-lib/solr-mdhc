@@ -46,7 +46,7 @@ ADD data.csv /tmp/data.csv
 # Load the data to mdhc core
 RUN /opt/solr/bin/solr start && sleep 3 && \
     curl 'http://localhost:8983/solr/mdhc/update?commit=true' -H 'Content-Type: text/xml' --data-binary '<delete><query>*:*</query></delete>' && \
-    curl -v "http://localhost:8983/solr/mdhc/update/csv?commit=true&f.categories.split=true&f.categories.separator=;" \
+    curl -v "http://localhost:8983/solr/mdhc/update/csv?commit=true&f.categories.split=true&f.categories.separator=;&f.categories.trim=true" \
     --data-binary @/tmp/data.csv -H 'Content-type:text/csv; charset=utf-8' && \
     /opt/solr/bin/solr stop
 
