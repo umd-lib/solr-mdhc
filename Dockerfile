@@ -10,10 +10,8 @@ RUN python /tmp/cleanup.py --infile=/tmp/data.csv --outfile=/tmp/clean.csv
 
 # Validate data.csv using csv-validator 1.1.5
 # https://digital-preservation.github.io/csv-validator/
-#
-# TODO: consider whether we should create a umd-lib version of this container,
-# which includes a version tag
-FROM knocknote/csv-validator:latest as validator
+
+FROM docker.lib.umd.edu/csv-validator:1.1.5-umd-0 as validator
 
 COPY --from=cleaner /tmp/clean.csv /tmp/clean.csv
 COPY data.csvs /tmp/data.csvs
