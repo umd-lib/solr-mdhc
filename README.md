@@ -15,13 +15,13 @@ When building the Docker image, the "data.csv" file will be used to populate the
 
 To build the Docker image named "solr-mdhc":
 
-```
+```bash
 > docker build -t solr-mdhc .
 ```
 
 To run the freshly built Docker container on port 8983:
 
-```
+```bash
 > docker run -it --rm -p 8983:8983 solr-mdhc
 ```
 

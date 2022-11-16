@@ -19,7 +19,7 @@ COPY data.csvs /tmp/data.csvs
 RUN validate /tmp/clean.csv /tmp/data.csvs
 
 # Load data.csv into the Solr core
-FROM solr:8.1.1 as builder
+FROM solr:8 as builder
 
 # Switch to root user
 USER root
@@ -59,7 +59,7 @@ RUN /opt/solr/bin/solr start && sleep 3 && \
     /opt/solr/bin/solr stop
 
 # Create the Solr runtime container
-FROM solr:8.1.1-slim
+FROM solr:8-slim
 
 ENV SOLR_HOME=/apps/solr/data
 
