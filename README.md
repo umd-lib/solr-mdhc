@@ -25,6 +25,12 @@ To run the freshly built Docker container on port 8983:
 > docker run -it --rm -p 8983:8983 solr-mdhc
 ```
 
+To build for deployment:
+
+```bash
+> docker buildx build . --builder=kube -t docker.lib.umd.edu/solr-mdhc:VERSION --push
+```
+
 ## License
 
 See the [LICENSE](LICENSE.txt) file for license rights and limitations.
